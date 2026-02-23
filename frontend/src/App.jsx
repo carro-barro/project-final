@@ -1,8 +1,15 @@
+
+import { GlobalStyles } from "./GlobalStyles"
+import { Title } from "./components/assets/Title"
+import { Hamburger } from "./components/assets/Hamburger"
+
 export const App = () => {
 
   return (
     <>
-      <h1>Welcome to Final Project!</h1>
-    </>
-  );
-};
+    <GlobalStyles />
+      <Title/>
+      <Hamburger />
+      </>
+  )
+}
