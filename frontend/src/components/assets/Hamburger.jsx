@@ -2,6 +2,37 @@ import styled from "styled-components"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
+
+export const Hamburger = () => {
+  const [expanded, setExpanded] = useState(false)
+  
+  const handleClick = () => {
+    setExpanded(prev => !prev)
+  }
+  
+  
+  return (
+    <StyledNav $expanded={expanded}>
+      <StyledButton onClick={handleClick}
+      aria-expanded={expanded}
+      aria-label="Main menu"
+      aria-controls="hamMenuList"
+      >
+        <StyledFirstSpan $expanded={expanded} aria-hidden="true"></StyledFirstSpan>
+        <StyledSecondSpan $expanded={expanded} aria-hidden="true"></StyledSecondSpan>
+        <StyledThirdSpan $expanded={expanded} aria-hidden="true"></StyledThirdSpan>
+      </StyledButton>
+      <StyledNavContent $expanded={expanded}>
+        <ul>
+          <li>Fitting room</li>
+          <li>Clothes</li>
+        </ul>
+      </StyledNavContent>
+    </StyledNav>
+  )
+}
+
+
 const StyledNav = styled.nav`
   position: fixed;
   top: 0;
@@ -65,32 +96,3 @@ const StyledSecondSpan = styled(StyledSpan)`
 const StyledThirdSpan = styled(StyledSpan)`
   transform: ${({ $expanded }) => ($expanded ? "translateY(-12px) rotate(-45deg)" : "initial")};
 `
-
-export const Hamburger = () => {
-  const [expanded, setExpanded] = useState(false)
-
-  const handleClick = () => {
-    setExpanded(prev => !prev)
-  }
-
-
-  return (
-    <StyledNav $expanded={expanded}>
-      <StyledButton onClick={handleClick}
-      aria-expanded={expanded}
-      aria-label="Main menu"
-      aria-controls="hamMenuList"
-      >
-        <StyledFirstSpan $expanded={expanded} aria-hidden="true"></StyledFirstSpan>
-        <StyledSecondSpan $expanded={expanded} aria-hidden="true"></StyledSecondSpan>
-        <StyledThirdSpan $expanded={expanded} aria-hidden="true"></StyledThirdSpan>
-      </StyledButton>
-      <StyledNavContent $expanded={expanded}>
-        <ul>
-          <li>Fitting room</li>
-          <li>Clothes</li>
-        </ul>
-      </StyledNavContent>
-    </StyledNav>
-  )
-}
