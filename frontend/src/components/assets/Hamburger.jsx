@@ -1,6 +1,16 @@
 import styled from "styled-components"
 import { useState } from "react"
-import { NavLink, Outlet, useLocation } from "react-router"
+import { NavLink } from "react-router"
+
+const HamMenuItem = (props) => {
+  const { to, children, ...rest } = props
+
+  return (
+    <StyledHamList {...rest}>
+      <StyledHamItem to={to} from={location.pathname === "/" ? "home" : location.pathname.at(-1)}>{children}</StyledHamItem>
+    </StyledHamList>
+  )
+}
 
 
 export const Hamburger = () => {
@@ -9,7 +19,7 @@ export const Hamburger = () => {
   const handleClick = () => {
     setExpanded(prev => !prev)
   }
-  
+
   
   return (
     <StyledNav $expanded={expanded}>
@@ -24,8 +34,8 @@ export const Hamburger = () => {
       </StyledButton>
       <StyledNavContent $expanded={expanded}>
         <ul>
-          <li>Home</li>
-          <li>Clothes</li>
+          <HamMenuItem to="/">Home</HamMenuItem>
+          <HamMenuItem to="/clothes">Clothes</HamMenuItem>
         </ul>
       </StyledNavContent>
     </StyledNav>
@@ -42,10 +52,6 @@ const StyledNav = styled.nav`
   width: 100%;
   z-index: 3000;
   `
-  
-  //background: ${({ $expanded, theme }) => $expanded
-//    ? theme.colors.darkOpacity
-//    : theme.colors.opacity};
 
 const StyledButton = styled.button`
   color: white;
@@ -75,11 +81,10 @@ const StyledSpan = styled.span`
   display: block;
   height: 4px;
   width: 40px;
-  background: white;
+  background: ${({ theme }) => theme.colors.primary};
   margin: 8px 0;
   border-radius: 2px;
   transition: transform 0.4s ease, opacity 0.3s ease;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 `
 
 
@@ -95,4 +100,16 @@ const StyledSecondSpan = styled(StyledSpan)`
 
 const StyledThirdSpan = styled(StyledSpan)`
   transform: ${({ $expanded }) => ($expanded ? "translateY(-12px) rotate(-45deg)" : "initial")};
+`
+
+const StyledHamList = styled.li`
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+`
+
+const StyledHamItem = styled(NavLink)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.text};
+ 
 `
