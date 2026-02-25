@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { NavLink, Outlet, useLocation } from "react-router"
 
 
 export const Hamburger = () => {
@@ -24,7 +24,7 @@ export const Hamburger = () => {
       </StyledButton>
       <StyledNavContent $expanded={expanded}>
         <ul>
-          <li>Fitting room</li>
+          <li>Home</li>
           <li>Clothes</li>
         </ul>
       </StyledNavContent>
