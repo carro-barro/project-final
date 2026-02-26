@@ -2,16 +2,6 @@ import styled from "styled-components"
 import { useState } from "react"
 import { NavLink } from "react-router"
 
-const HamMenuItem = (props) => {
-  const { to, children, ...rest } = props
-
-  return (
-    <StyledHamList {...rest}>
-      <StyledHamItem to={to} from={location.pathname === "/" ? "home" : location.pathname.at(-1)}>{children}</StyledHamItem>
-    </StyledHamList>
-  )
-}
-
 
 export const Hamburger = () => {
   const [expanded, setExpanded] = useState(false)
@@ -33,10 +23,10 @@ export const Hamburger = () => {
         <StyledThirdSpan $expanded={expanded} aria-hidden="true"></StyledThirdSpan>
       </StyledButton>
       <StyledNavContent $expanded={expanded}>
-        <ul>
-          <HamMenuItem to="/">Home</HamMenuItem>
-          <HamMenuItem to="/clothes">Clothes</HamMenuItem>
-        </ul>
+        <StyledHamList>
+          <li><StyledHamItem to="/">Home</StyledHamItem></li>
+          <li><StyledHamItem to="/clothes">Clothes</StyledHamItem></li>
+        </StyledHamList>
       </StyledNavContent>
     </StyledNav>
   )
@@ -102,7 +92,7 @@ const StyledThirdSpan = styled(StyledSpan)`
   transform: ${({ $expanded }) => ($expanded ? "translateY(-12px) rotate(-45deg)" : "initial")};
 `
 
-const StyledHamList = styled.li`
+const StyledHamList = styled.ul`
   list-style: none;
   padding: 5px;
   margin: 0;
