@@ -9,6 +9,7 @@ import { Login } from "./pages/Login"
 import { Signup } from "./pages/Signup"
 import { useState, useEffect } from "react"
 import { API_BASE_URL } from "./constants"
+import { WelcomeModal } from "./components/home/WelcomeModal"
 
 export const App = () => {
   const [clothes, setClothes] = useState([])
@@ -40,14 +41,15 @@ export const App = () => {
   return (
     <ThemeProvider theme={Theme}>
     <GlobalStyles />
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<Home/>}/>
-          <Route path="/clothes" element={<Clothes/>} />
-        </Route>
-        <Route path="/login" element={<Login/>} />
-        <Route path="/signup" element={<Signup/>} />
-      </Routes>
-      </ThemeProvider>
+    
+    <Routes>
+      <Route path="/" element={<Layout/>}>
+        <Route index element={<Home/>}/>
+        <Route path="/clothes" element={<Clothes/>} />
+      </Route>
+      <Route path="/login" element={<Login/>} />
+      <Route path="/signup" element={<Signup/>} />
+    </Routes>
+    </ThemeProvider>
   )
 }

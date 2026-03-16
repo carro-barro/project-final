@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Button } from "../assets/Button"
+import { ClothesInput } from "../assets/ClothesInput"
 
 const StyledCard = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ export const EmptyStateCard = () => {
   return (
     <StyledCard>
       <StyledHeading>No clothes uploaded</StyledHeading>
-      <Button variant="clothes" onClick={() => {}}>Upload Clothes</Button>
+      <ClothesInput>Upload Clothes</ClothesInput>
     </StyledCard>
   )
 }

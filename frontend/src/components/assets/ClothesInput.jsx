@@ -18,7 +18,7 @@ const StyledLabel = styled.label`
   // `}
 
 
-export const Button = ({ variant, onClick, children }) => {
+export const ClothesInput = () => {
   const {upload, loading} = useUploadGarment()
 
   const handleFileUpload = async (e) => {

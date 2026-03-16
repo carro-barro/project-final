@@ -1,7 +1,9 @@
 import styled from "styled-components"
 import { Plattform } from "../components/home/Plattform"
+import { WelcomeModal } from "../components/home/WelcomeModal"
+import { useUserStore } from "../stores/useUserStore"
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,9 +12,17 @@ const StyledContainer = styled.div`
 `
 
 export const Home = () => {
+  const user = useUserStore((state) => state.user)
+
   return (
-    <StyledContainer>
-      <Plattform />
-    </StyledContainer>
+    <>
+    {!user ? (
+      <WelcomeModal/>
+    ) : (
+      <StyledContainer>
+        <Plattform />
+      </StyledContainer>
+    )}
+    </>
   )
 }
