@@ -1,6 +1,7 @@
 import styled from "styled-components"
+import { useUploadGarment } from "../../hooks/useUploadGarment"
 
-const StyledButton = styled.button`
+const StyledLabel = styled.label`
   border: none;
   max-width: fit-content;
   font-family: "Montserrat";
@@ -15,6 +16,29 @@ const StyledButton = styled.button`
   // `
   //   background: ${theme => theme.colors.secondary};
   // `}
+
+
 export const Button = ({ variant, onClick, children }) => {
-  return <StyledButton $variant={variant} onClick={onClick}>{children}</StyledButton>
+  const {upload, loading} = useUploadGarment()
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0]
+    
+    if (file) {
+      await upload(file, "top")
+    }
+  }
+
+  return (
+    <StyledLabel>
+      {loading ? "uploading ...": "upload new garment"}
+      <input 
+        type="file"
+        hidden
+        accept="image/*"
+        onChange={handleFileUpload}
+        disabled={loading}
+      />
+    </StyledLabel>
+  )
 }

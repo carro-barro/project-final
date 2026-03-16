@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body
 
-    const user = await User.findOne({email: email.toLowerCase})
+    const user = await User.findOne({email: email.toLowerCase()})
 
     if (user && bcrypt.compareSync(password, user.password)) {
       res.json({

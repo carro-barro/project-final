@@ -9,11 +9,11 @@ router.post("/", authenticateUser, parser.single("image"), async (req, res) => {
   try {
     const { garmentType } = req.body
 
-    const newGarment = new SVGLinearGradientElement({
+    const newGarment = new Garment({
       userId: req.user._id,
       imageUrl: req.file.path,
       publicId: req.file.filename,
-      garmentType
+      garmentType: req.body.garmentType
     })
 
     const savedGarment = await newGarment.save()
@@ -27,10 +27,10 @@ router.post("/", authenticateUser, parser.single("image"), async (req, res) => {
   }
 })
 
-router.get("/", authenticateUser, async (req, res) => {
-  const clothes = await Garment.find({ userId: req.user._id})
-  res.json(clothes)
-})
+// router.get("/", authenticateUser, async (req, res) => {
+//   const clothes = await Garment.find({ userId: req.user._id})
+//   res.json(clothes)
+// })
 
 router.get("/clothes", authenticateUser, async (req, res) => {
   const clothes = await Garment.find({ userId: req.user._id})

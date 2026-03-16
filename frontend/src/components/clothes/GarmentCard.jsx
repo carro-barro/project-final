@@ -10,7 +10,7 @@ const StyledImg = styled.img`
   border: 1px solid red;
 `
 
-const StyledInfoConatiner = styled.div`
+const StyledInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
 `
@@ -18,10 +18,10 @@ const StyledInfoConatiner = styled.div`
 export const GarmentCard = ({ garment }) => {
   return (
     <StyledContainer>
-      <StyledImg src={garment.imageUrl} alt={`picture of garment type: "{garment.garmentType}`}/>
-      <StyledInfoConatiner>
-        <p>{garmentType}</p>
-      </StyledInfoConatiner>
+      <StyledImg src={garment.imageUrl} alt={`picture of garment type: "${garment.garmentType}"`}/>
+      <StyledInfoContainer>
+        <p>{garment.garmentType}</p>
+      </StyledInfoContainer>
     </StyledContainer>
   )
 }
